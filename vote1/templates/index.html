@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Votes</title>
+</head>
+<body>
+
+<!--{% if items %}-->
+  <!--<h2>Hello {{ items }}!</h2>-->
+<!--{% else %}-->
+  <!--<h1>Hello, World!</h1>-->
+<!--{% endif %}-->
+
+{% if items %}
+    <form action="/" method="post">
+    <ul class="items">
+        {% for item in items %}
+            <li>
+                <p>{{ item.title }}</p>
+                <p>当前票数：{{ item.votes }}</p>
+                <p><input type="radio" name="vote" value={{ item.id }}></p>
+            </li>
+        {% endfor %}
+
+    </ul>
+    <input type="submit" value="提交">
+    </form>
+{% else %}
+<h2>nothing here</h2>
+{% endif %}
+
+<button type="button" name="creat_item" id="bt1"><a href="{{ create_item_url }}">我要发起新的选项</a></button>
+
+{% for thing in request_list %}
+<p>{{ thing }}:{{ request[thing] }}</p>
+{% endfor %}
+
+{% for thing in session_list %}
+<p>{{ thing }}:{{ session[thing] }}</p>
+{% endfor %}
+
+</body>
+</html>
